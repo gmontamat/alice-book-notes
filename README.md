@@ -1,6 +1,6 @@
 # Alice’s Adventures in a differentiable wonderland
 
-My notes and excercices from this book.
+My notes and exercises from this book.
 
 - https://www.sscardapane.it/alice-book/
 
@@ -16,7 +16,7 @@ Run notebooks using [uv](https://docs.astral.sh/uv/):
 uvx --python 3.12 jupyter lab
 ```
 
-At the top of each notebook there's a cell with required dependencies, eg:
+At the top of each notebook there's a cell with required dependencies, e.g.:
 
 ```
 !uv pip install matplotlib
