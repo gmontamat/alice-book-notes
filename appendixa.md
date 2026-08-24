@@ -22,11 +22,13 @@ $$\sum_{i=1}^{n} \frac{x_i (1 - p^{\*}) - p^{\*} (1 - x_i)}{p^{*} (1 - p^{\*})} 
 
 $$\sum_{i=1}^{n} \frac{x_i - p^{\*}}{p^{\*} (1 - p^{\*})} = 0$$
 
-Assuming $p^{\*} \ne 0$:
+Assuming $p^{\*} \ne 0$ and $p^{\*} \ne 1$:
 
 $$\sum_{i=1}^{n} x_i - p^{\*} = 0$$
 
-$$\sum_{i=1}^{n} x_i = \sum_{i=1}^{n} p^{\*} = n p^{\*}$$
+$$\sum_{i=1}^{n} x_i = \sum_{i=1}^{n} p^{\*}$$
+
+$$\sum_{i=1}^{n} x_i = n p^{\*}$$
 
 Thus,
 
