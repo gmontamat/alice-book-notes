@@ -12,4 +12,7 @@ $$w^{\*}, b^{\*} = \underset{w, b}{\arg\min} \frac{1}{n} \sum_{i=1}^n (y_i - \ma
 
 We can vectorize the linear model by defining:
 
-$$\mathbf{X} = \begin{bmatrix} \mathbf{x_1^{\top}} \\ ... \\ \mathbf{x_n^{\top}} \end{bmatrix} \sim (n, c)$$
+$$\mathbf{X} = \begin{bmatrix}
+\mathbf{_1^{\top}} \\
+... \\
+\mathbf{x_n^{\top}} \end{bmatrix} \sim (n, c)$$
