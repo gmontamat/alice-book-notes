@@ -14,7 +14,7 @@ $$p^* = \underset{p}{\arg\max} \sum_{i=1}^{n} x_i \log(p) + (1 - x_i) \log(1-p)$
 Using the fact that this function is convex in $p$, we can find the maximum, $p^*$,
 in terms of $x_i$ by taking the derivative and equaling to $0$:
 
-$$\frac{\partial}{\partial p} \sum_{i=1}^{n} x_i \log(p) + (1 - x_i) \log(1-p)\right\rvert_{p^{\*}} = 0$$
+$$\left. \frac{\partial}{\partial p} \sum_{i=1}^{n} x_i \log(p) + (1 - x_i) \log(1-p) \right|_{p^{\*}} = 0$$
 
 $$\sum_{i=1}^{n} \frac{x_i}{p^{\*}} - \frac{1-x_i}{1 - p^{\*}} = 0$$
 
