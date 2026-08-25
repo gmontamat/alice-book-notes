@@ -8,7 +8,7 @@ Where $\mathbf{w} \sim (c)$ and $b \in \mathbb{R}$.
 
 The least-squares optimization problem is given by:
 
-$$w^{*}, b^{*} = \underset{w, b}{\arg\min} \frac{1}{n} \sum_{i=1}^n
+$$w^{\*}, b^{\*} = \underset{w, b}{\arg\min} \frac{1}{n} \sum_{i=1}^n
 (y_i - \mathbf{w}^{\top} \mathbf{x}_i - b)^2$$
 
 We can vectorize the linear model by defining:
@@ -59,21 +59,21 @@ We can verify the dimensions: $\mathbf{X}^{\top} \sim (c, n)$, $\mathbf{X}
 
 ## Regularizing least-squares
 
-We obtain the closed-form solution for $\mathbf{w}^{*}$ (aka. no gradient
-descent needed) by setting $\nabla LS(\mathbf{w}^{*}) = \mathbf{0}$:
+We obtain the closed-form solution for $\mathbf{w}^{\*}$ (aka. no gradient
+descent needed) by setting $\nabla LS(\mathbf{w}^{\*}) = \mathbf{0}$:
 
-$$\mathbf{X}^{\top} (\mathbf{X} \mathbf{w}^{*} - \mathbf{y}) = \mathbf{0}$$
+$$\mathbf{X}^{\top} (\mathbf{X} \mathbf{w}^{\*} - \mathbf{y}) = \mathbf{0}$$
 
-$$\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*} - \mathbf{X}^{\top} \mathbf{y} =
+$$\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{\*} - \mathbf{X}^{\top} \mathbf{y} =
 \mathbf{0}$$
 
-$$\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*} = \mathbf{X}^{\top} \mathbf{y}$$
+$$\mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{\*} = \mathbf{X}^{\top} \mathbf{y}$$
 
 $$(\mathbf{X}^{\top} \mathbf{X})^{-1} (\mathbf{X}^{\top} \mathbf{X})
-\mathbf{w}^{*} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}
+\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}
 \mathbf{y}$$
 
-$$\mathbf{w}^{*} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}
+$$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}
 \mathbf{y}$$
 
 If one feature (row in $\mathbf{X}$) is a scalar multiple of the other, then
@@ -81,7 +81,7 @@ $\mathbf{X}^{\top} \mathbf{X}$ is not invertible (**collinearity**. We can add a
 small multiple ($\lambda > 0$) of $\mathbf{I} \sim (c, c)$ to invert the matrix
 (note how this ensures there's no collinearity):
 
-$$\mathbf{w}^{*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
+$$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
 \mathbf{X}^{\top} \mathbf{y}$$
 
 This is known as the closed form solution for the **regularized least-squares**
@@ -102,15 +102,15 @@ $$LS_{\text{ridge}}(\mathbf{w}) = \mathbf{y}^{\top} \mathbf{y} -
 
 We take the gradient and equal it to $\mathbf{0}$:
 
-$$\nabla_{\mathbf{w}} LS_{\text{ridge}}(\mathbf{w}^{*}) = -2 \mathbf{X}^{\top}
-\mathbf{y} + 2 \mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*} + 2 \lambda
-\mathbf{w}^{*} = 0$$
+$$\nabla_{\mathbf{w}} LS_{\text{ridge}}(\mathbf{w}^{\*}) = -2 \mathbf{X}^{\top}
+\mathbf{y} + 2 \mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{\*} + 2 \lambda
+\mathbf{w}^{\*} = 0$$
 
-$$-\mathbf{X}^{\top} \mathbf{y} + \mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{*} +
-\lambda \mathbf{w}^{*} = 0$$
+$$-\mathbf{X}^{\top} \mathbf{y} + \mathbf{X}^{\top} \mathbf{X} \mathbf{w}^{\*} +
+\lambda \mathbf{w}^{\*} = 0$$
 
-$$(\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I}) \mathbf{w}^{*} =
+$$(\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I}) \mathbf{w}^{\*} =
 \mathbf{X}^{\top} \mathbf{y}$$ 
 
-$$\mathbf{w}^{*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
+$$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
 \mathbf{X}^{\top} \mathbf{y} \quad \blacksquare$$ 
