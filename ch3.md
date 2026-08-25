@@ -2,19 +2,25 @@
 
 Concerned with the behavior of:
 
-$$f^{\*} = \underset{f}{\arg\min} \frac{1}{n} \sum_{i=1}^{n} l(y_i,
-f(\mathbf{x}_i)) \tag{1}$$
+$$
+f^{*} = \underset{f}{\arg\min} \frac{1}{n} \sum_{i=1}^{n} l(y_i,
+f(\mathbf{x}_i)) \tag{1}
+$$
 
 When seen as a finite-sample approximation of:
 
-$$\mathbb{E}_{p(\mathbf{x}, y)}[l(y, f(\mathbf{x}))] \tag{2}$$
+$$
+\mathbb{E}_{p(\mathbf{x}, y)}[l(y, f(\mathbf{x}))] \tag{2}
+$$
 
 In ML, we don't minimize across the space of all possible functions, our models
 are parametrized by $\mathbf{w}$. We then train $f(\mathbf{x}, \mathbf{w})$ via
 gradient descent:
 
-$$\mathbf{w}^{\*} = \underset{\mathbf{w}}{\arg\min} \frac{1}{n} \sum_{i=1}^{n}
-l(y_i, f(\mathbf{x}_i, \mathbf{w})) \tag{3}$$
+$$
+\mathbf{w}^{*} = \underset{\mathbf{w}}{\arg\min} \frac{1}{n} \sum_{i=1}^{n}
+l(y_i, f(\mathbf{x}_i, \mathbf{w})) \tag{3}
+$$
 
 The difference between the expected ($2$) and empirical ($1$) loss is called
 the **generalization gap**. A memorization algorithm will minimize *1* but have
