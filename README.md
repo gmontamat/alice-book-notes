@@ -1,6 +1,7 @@
 # Alice’s Adventures in a differentiable wonderland
 
-My notes and exercises from this book.
+My notes and exercises from this book. I also worked out some of the
+calculations in the chapters.
 
 - https://www.sscardapane.it/alice-book/
 
