@@ -32,7 +32,8 @@ $$LS(\mathbf{w}, b) = \frac{1}{n} \sum_{i=1}^n (y_i - \mathbf{w}^{\top}
 Now, we can ignore the bias term $b$ if we assume the last component of each
 $\mathbf{x}_i$ is $1$:
 
-$$\mathbf{x} = \begin{bmatrix} \mathbf{x} \\ 1 \end{bmatrix} \sim (c + 1)$$
+$$\mathbf{x} = \begin{bmatrix} \mathbf{x} \\
+1 \end{bmatrix} \sim (c + 1)$$
 
 Then, the loss becomes:
 
