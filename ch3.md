@@ -30,7 +30,7 @@ SLT.
 
 **Loss Minimization**: Directly optimizes a predefined loss
   function $L(\mathbf{w})$ that quantifies prediction errors. Approach is
-  task-specific and can include arbitrary penalties (e.g. $l_1$/$l_2$
+  task-specific and can include arbitrary penalties (e.g. $l_1$ or $l_2$
   regularization) without probabilistic interpretation.
 
 **Maximum Likelihood**: Maximizes the joint probability $P(\mathscr{S}_n|f)$ of

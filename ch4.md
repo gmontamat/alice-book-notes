@@ -126,5 +126,5 @@ regularization. It does not depend on the dataset and encodes a preference for
 a certain type of solution (low-norm weights). The chapter does not mention the
 Lasso regression that adds an $l_1$ penalty
 term ($\lambda \left\lvert \mathbf{w} \right\rvert$) to the loss function and
-does not have a closed form optimal weights. It also favors sparse solutions,
+does not have a closed form solution. It also favors sparse optimal weights,
 driving weaker coefficients in $\mathbf{w}$ to exactly zero.
