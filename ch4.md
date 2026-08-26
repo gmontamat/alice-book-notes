@@ -124,6 +124,7 @@ $$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
 The term $\lambda \left\lVert \mathbf{w} \right\lVert^2$ is known as $l_2$
 regularization. It does not depend on the dataset and encodes a preference for
 a certain type of solution (low-norm weights). The chapter does not mention the
-Lasso regression that adds an $l_1$ penalty term $\lvert \mathbf{w} \rvert$ to
-the loss function and does not have a closed form solution. It also favors
-sparse solutions, driving weaker coefficients in $\mathbf{w}$ to exactly zero.
+Lasso regression that adds an $l_1$ penalty
+term $\lambda \lvert\mathbf{w}\rvert$ to the loss function and does not have a
+closed form solution. It also favors sparse solutions, driving weaker
+coefficients in $\mathbf{w}$ to exactly zero.
