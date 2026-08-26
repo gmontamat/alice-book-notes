@@ -36,20 +36,26 @@ $$\mathbf{x} = \begin{bmatrix} \mathbf{x} \\ 1 \end{bmatrix} \sim (c + 1)$$
 
 Then, the loss becomes:
 
-$$LS(\mathbf{w}) = \frac{1}{n} \sum_{i=1}^n (y_i - \mathbf{w}^{\top}
-\mathbf{x}_i)^2$$
+$$LS(\mathbf{w}) = \frac{1}{n} \left\lVert \mathbf{y} - \mathbf
+{X w} \right\rVert^2$$
+
+$$LS(\mathbf{w}) = \frac{1}{n} (\mathbf{y} - \mathbf{X w})^{\top}
+(\mathbf{y} - \mathbf{X w})$$
+
+$$LS(\mathbf{w}) = \frac{1}{n} (\mathbf{y}^{\top} \mathbf{y} - \mathbf{y}^{\top}
+\mathbf{X w} - \mathbf{w}^{\top} \mathbf{X}^{\top} \mathbf{y} +
+\mathbf{w}^{\top} \mathbf{X}^{\top} \mathbf{X w})$$
 
 And its gradient:
 
 $$\nabla LS(\mathbf{w}) = \frac{\partial LS(\mathbf{w})}{\partial \mathbf{w}} =
-\frac{1}{n} \sum_{i=1}^n 2 (y_i - \mathbf{w}^{\top} \mathbf{x}_i)
-(-\mathbf{x}_i)$$
+\frac{1}{n} (-2 \mathbf{X}^{\top} \mathbf{y} + 2 \mathbf{X}^{\top}
+\mathbf{X w})$$
 
-$$\nabla LS(\mathbf{w}) = \frac{2}{n} \sum_{i=1}^n \mathbf{x}_i
-(\mathbf{w}^{\top} \mathbf{x}_i - y_i)$$
+$$\nabla LS(\mathbf{w}) = \frac{2}{n} \mathbf{X}^{\top} (\mathbf{X w} -
+\mathbf{y})$$
 
-Note that $\mathbf{w}^{\top} \mathbf{x}_i - y_i \in \mathbb{R}$. So ignoring the
-term $\frac{2}{n}$, we can write in matrix form:
+Ignoring the term $\frac{2}{n}$, we can simplify:
 
 $$\nabla LS(\mathbf{w}) = \mathbf{X}^{\top} (\mathbf{X} \mathbf{w} - \mathbf
 {y})$$
@@ -77,9 +83,9 @@ $$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X})^{-1} \mathbf{X}^{\top}
 \mathbf{y}$$
 
 If one feature (row in $\mathbf{X}$) is a scalar multiple of the other, then
-$\mathbf{X}^{\top} \mathbf{X}$ is not invertible (**collinearity**. We can add a
-small multiple ($\lambda > 0$) of $\mathbf{I} \sim (c, c)$ to invert the matrix
-(note how this ensures there's no collinearity):
+$\mathbf{X}^{\top} \mathbf{X}$ is not invertible (**collinearity**). We can add
+a small multiple ($\lambda > 0$) of $\mathbf{I} \sim (c, c)$ to invert the
+matrix (note how this ensures there's no collinearity):
 
 $$\mathbf{w}^{\*} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1}
 \mathbf{X}^{\top} \mathbf{y}$$
