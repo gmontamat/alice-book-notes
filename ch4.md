@@ -126,6 +126,80 @@ The term $\lambda \left\lVert \mathbf{w} \right\lVert^2$ is known as $l_2$
 regularization. It does not depend on the dataset and encodes a preference for
 a certain type of solution (low-norm weights). The chapter does not mention the
 Lasso regression that adds an $l_1$ penalty
-term ($\lambda \left\lvert \mathbf{w} \right\rvert$) to the loss function and
-does not have a closed form solution. It also favors sparse optimal weights,
+term $\lambda \left\lvert \mathbf{w} \right\rvert$ to the loss function and does
+not have a closed-form solution. It also favors sparse optimal weights,
 driving weaker coefficients in $\mathbf{w}$ to exactly zero.
+
+## Linear models for classification
+
+In classification, $y_i \in \{1, \ldots, m\}$ where $m$ is the number of
+classes. We could regress on a real value $\tilde{y}_i \in [1, m]$ and map
+back to the original domain by rounding to the nearest integer. This is not a
+good modeling choice because we're introducing a spurious ordering of classes
+that can be exploited by the model itself (e.g. class 2 is closer to 3 than to
+class 4). Instead, we use the **one-hot encoded** version of $y$,
+$\mathbf{y^{\text{oh}}} \sim \text{Binary}(m)$:
+
+$$[\mathbf{y^{\text{oh}}}]_j = \begin{cases}
+    1 & \text{if } y = j \\
+    0 & \text{otherwise}
+\end{cases}$$
+
+Note that:
+
+$$\left\lVert \mathbf{y^{\text{oh}}}_1 - \mathbf{y^{\text{oh}}}_2 \right\rVert =
+\begin{cases}
+    0 & \text{if } y_1 = y_2 \\
+    \sqrt{2} & \text{if } y_1 \neq y_2
+\end{cases}$$
+
+## Generalized softmax with temperature
+
+Consider a more general version of the softmax, where we add an addtitional
+hyper-parameter $\tau > 0$ called the **temperature**:
+
+$$\text{softmax}(\mathbf{x}; \tau) = \text{softmax}(\mathbf{x} / \tau)$$
+
+Therefore,
+
+$$\left[\text{softmax}(\mathbf{x}; \tau)\right]_i =
+\frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}}$$
+
+We can show that $\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau)
+= \frac{1}{m}$:
+
+$$\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) =
+\lim\limits_{\tau \to \infty}
+\frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}} =$$
+
+$$= \lim\limits_{\tau \to \infty}
+\frac{1}{\sum_{j=1}^{m} \frac{e^{x_j / \tau}}{e^{x_i / \tau}}} =$$
+
+$$= \lim\limits_{\tau \to \infty}
+\frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
+
+Given that $\lim\limits_{\tau \to \infty} \frac{x_j - x_i}{\tau} = 0$, then:
+
+$$\lim\limits_{\tau \to \infty}
+\frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
+\frac{1}{\sum_{j=1}^{m} 1} = \frac{1}{m}
+\quad \blacksquare$$
+
+We can also show that $\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau)
+= \underset{i}{\arg\max} \ \mathbf{x}$:
+
+$$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
+\lim\limits_{\tau \to 0}
+\frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
+
+Note that $\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = \infty \text{ if }
+x_i \neq x_j$ and $\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0
+\text{ if } x_i = x_j$. So,
+
+$$\lim\limits_{\tau \to 0}
+\frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
+\begin{cases}
+    0 & \text{if } x_i \neq x_j \\
+    1 & \text{if } x_i = x_j
+\end{cases} = \underset{i}{\arg\max} \ \mathbf{x} 
+\quad \blacksquare$$
