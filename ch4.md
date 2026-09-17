@@ -185,8 +185,8 @@ $$\lim\limits_{\tau \to \infty}
 \frac{1}{\sum_{j=1}^{m} 1} = \frac{1}{m}
 \quad \blacksquare$$
 
-We can also show that $\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau)
-= \underset{i}{\arg\max} \ \mathbf{x}$:
+We can also show that
+$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) = \underset{i}{\arg\max} \ \mathbf{x}$:
 
 $$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
 \lim\limits_{\tau \to 0}
