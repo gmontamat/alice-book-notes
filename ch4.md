@@ -132,8 +132,8 @@ driving weaker coefficients in $\mathbf{w}$ to exactly zero.
 
 ## Linear models for classification
 
-In classification, $y_i \in \{1, \ldots, m\}$ where $m$ is the number of
-classes. We could regress on a real value $\tilde{y}_i \in [1, m]$ and map
+In classification, $y_i \in {1, \ldots, m}$ where $m$ is the number of
+classes. We could regress on a real value $\tilde{y}_i \in \[1, m\]$ and map
 back to the original domain by rounding to the nearest integer. This is not a
 good modeling choice because we're introducing a spurious ordering of classes
 that can be exploited by the model itself (e.g. class 2 is closer to 3 than to
@@ -223,3 +223,5 @@ $$\lim\limits_{\tau \to 0}
     1 & \text{if } x_i = x_j
 \end{cases} = \underset{i}{\arg\max} \ \mathbf{x} 
 \quad \blacksquare$$
+
+## Cross-entropy loss 
