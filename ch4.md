@@ -165,11 +165,16 @@ Therefore,
 $$\left[\text{softmax}(\mathbf{x}; \tau)\right]_i =
 \frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}}$$
 
-We can show that $\lim_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) =
-\frac{1}{m}$:
+We can show that:
+
+$$\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) = \frac{1}{m}$$
+
+By definition,
 
 $$\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) =
-\lim\limits_{\tau \to \infty}
+\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x} / \tau) =$$
+
+$$= \lim\limits_{\tau \to \infty}
 \frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}} =$$
 
 $$= \lim\limits_{\tau \to \infty}
@@ -178,23 +183,38 @@ $$= \lim\limits_{\tau \to \infty}
 $$= \lim\limits_{\tau \to \infty}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
 
-Given that $\lim\limits_{\tau \to \infty} \frac{x_j - x_i}{\tau} = 0$, then:
+Given that
+
+$$\lim\limits_{\tau \to \infty} \frac{x_j - x_i}{\tau} = 0$$
+
+Then:
 
 $$\lim\limits_{\tau \to \infty}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
 \frac{1}{\sum_{j=1}^{m} 1} = \frac{1}{m}
 \quad \blacksquare$$
 
-We can also show that $\lim_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
-\underset{i}{\arg\max} \mathbf{x}$:
+We can also show that:
+
+$$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
+\underset{i}{\arg\max} \mathbf{x}$$
+
+Using the same definition from above:
 
 $$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
 \lim\limits_{\tau \to 0}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
 
-Note that $\lim_{\tau \to 0} \frac{x_j - x_i}{\tau} = \infty \text{ if } x_i
-\neq x_j$ and $\lim_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0 \text{ if } x_i =
-x_j$. So,
+Note that:
+
+$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = \infty \text{ if }
+x_i \neq x_j$$
+
+and
+
+$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0 \text{ if } x_i = x_j$$
+
+So,
 
 $$\lim\limits_{\tau \to 0}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
