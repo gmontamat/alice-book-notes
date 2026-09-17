@@ -132,13 +132,13 @@ driving weaker coefficients in $\mathbf{w}$ to exactly zero.
 
 ## Linear models for classification
 
-In classification, $y_i \in \lbrace1, \ldots, m\rbrace$ where $m$ is the number
-of classes. We could regress on a real value $`\tilde{y}_i \in [1, m]`$ and map
-back to the original domain by rounding to the nearest integer. This is not a
-good modeling choice because we're introducing a spurious ordering of classes
-that can be exploited by the model itself (e.g. class 2 is closer to 3 than to
-class 4). Instead, we use the **one-hot encoded** version of $y$,
-$\mathbf{y^{\text{oh}}} \sim \text{Binary}(m)$:
+In classification, $`y_i \in \lbrace1, \ldots, m\rbrace`$ where $`m`$ is the
+number of classes. We could regress on a real value $`\tilde{y}_i \in [1, m]`$
+and map back to the original domain by rounding to the nearest integer. This is
+not a good modeling choice because we're introducing a spurious ordering of
+classes that can be exploited by the model itself (e.g. class 2 is closer to 3
+than to class 4). Instead, we use the **one-hot encoded** version of $`y`$,
+$`\mathbf{y^{\text{oh}}} \sim \text{Binary}(m)`$:
 
 $$[\mathbf{y^{\text{oh}}}]_j = \begin{cases}
     1 & \text{if } y = j \\
