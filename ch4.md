@@ -256,27 +256,27 @@ $\mathbf{b} \sim (m)$. Because outputs are restricted to the probability
 simplex, we can interpret them as parameters of a categorical distribution:
 
 $$p (\mathbf{y^{\text{oh}}} \mid \hat{y}) =
-\prod_{i=0}^m \hat{y}_i^{y^{\text{oh}}_i}$$
+\prod_{i=1}^m \hat{y}_i^{y^{\text{oh}}_i}$$
 
 We compute the maximum likelihood solution:
 
 $$\underset{\hat{y}}{\text{argmax }} p(\mathbf{y^{\text{oh}}} \mid \hat{y}) =
-\underset{\hat{y}}{\text{argmax }} \prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i}$$
+\underset{\hat{y}}{\text{argmax }} \prod_{i=1}^m \hat{y}_i^{y^\text{oh}_i}$$
 
 Since the $\log$ is strictly increasing,
 
-$$\underset{\hat{y}}{\text{argmax }} \prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i} =
+$$\underset{\hat{y}}{\text{argmax }} \prod_{i=1}^m \hat{y}_i^{y^\text{oh}_i} =
 \underset{\hat{y}}{\text{argmax }}
-\log (\prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i}) =$$
+\log (\prod_{i=1}^m \hat{y}_i^{y^\text{oh}_i}) =$$
 
-$$= \underset{\hat{y}}{\text{argmax }} \sum_{i=0}^m
+$$= \underset{\hat{y}}{\text{argmax }} \sum_{i=1}^m
 \log (\hat{y}_i^{y^\text{oh}_i}) = \underset{\hat{y}}{\text{argmax }}
-\sum_{i=0}^m y^\text{oh}_i \log(\hat{y}_i) =$$
+\sum_{i=1}^m y^\text{oh}_i \log(\hat{y}_i) =$$
 
-$$= \underset{\hat{y}}{\text{argmin }} -\sum_{i=0}^m y^\text{oh}_i
+$$= \underset{\hat{y}}{\text{argmin }} -\sum_{i=1}^m y^\text{oh}_i
 \log(\hat{y}_i)$$
 
 So MLE is equivalent to minimizing the **cross-entropy loss**:
 
 $$CE(\mathbf{y}, \hat{\mathbf{y}}) =
--\sum_{i=0}^m y^\text{oh}_i \log(\hat{y}_i)$$
+-\sum_{i=1}^m y^\text{oh}_i \log(\hat{y}_i)$$
