@@ -153,6 +153,9 @@ $$\left\lVert \mathbf{y^{\text{oh}}}_1 - \mathbf{y^{\text{oh}}}_2 \right\rVert =
     \sqrt{2} & \text{if } y_1 \neq y_2
 \end{cases}$$
 
+So the euclidean distance between any pair of different classes is always the
+same.
+
 ## Generalized softmax with temperature
 
 Consider a more general version of the softmax, where we add an addtitional
@@ -197,9 +200,9 @@ $$\lim\limits_{\tau \to \infty}
 We can also show that:
 
 $$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
-\underset{i}{\arg\max} \mathbf{x}$$
+\underset{i}{\arg\max} \ \mathbf{x}$$
 
-Using the same definition from above:
+Using the same definition as before:
 
 $$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
 \lim\limits_{\tau \to 0}
@@ -224,4 +227,21 @@ $$\lim\limits_{\tau \to 0}
 \end{cases} = \underset{i}{\arg\max} \ \mathbf{x} 
 \quad \blacksquare$$
 
-## Cross-entropy loss as 
+## Deriving Cross-entropy loss via Maximum Likelihood Estimation
+
+A linear model for classification is:
+
+$$\hat{y} = \text{softmax}(\mathbf{Wx} + \mathbf{b})$$
+
+Where $\mathbf{W} \sim (m, c)$, $\mathbf{x} \sim (c)$, and
+$\mathbf{b} \sim (m)$. Because outputs are restricted to the probability
+simplex, we can interpret them as parameters of a categorical distribution:
+
+$$p (\mathbf{y^{\text{oh}}} \mid \hat{y}) =
+\prod_{i=0}^m \hat{y}_i^{y^{\text{oh}}_i}$$
+
+We compute the maximum likelihood solution:
+
+$$\underset{\hat{y}}{\arg\max} \ p(\mathbf{y^{\text{oh}}} \mid \hat{y}) =$$
+
+$$= \underset{\hat{y}}{\arg\max} \ \prod \hat{y}_i^{y^\text{oh}_i}$$
