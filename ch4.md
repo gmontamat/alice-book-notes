@@ -161,21 +161,22 @@ same.
 Consider a more general version of the softmax, where we add an addtitional
 hyper-parameter $\tau > 0$ called the **temperature**:
 
-$$\text{softmax}(\mathbf{x}; \tau) = \text{softmax}(\mathbf{x} / \tau)$$
+$$\textit{softmax}(\mathbf{x}; \tau) = \textit{softmax}(\mathbf{x} / \tau)$$
 
 Therefore,
 
-$$\left[\text{softmax}(\mathbf{x}; \tau)\right]_i =
+$$\left[\textit{softmax}(\mathbf{x}; \tau)\right]_i =
 \frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}}$$
 
 We can show that:
 
-$$\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) = \frac{1}{m}$$
+$$\lim\limits_{\tau \to \infty} \textit{softmax}(\mathbf{x}; \tau) =
+\frac{1}{m}$$
 
 By definition,
 
-$$\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x}; \tau) =
-\lim\limits_{\tau \to \infty} \text{softmax}(\mathbf{x} / \tau) =$$
+$$\lim\limits_{\tau \to \infty} \textit{softmax}(\mathbf{x}; \tau) =
+\lim\limits_{\tau \to \infty} \textit{softmax}(\mathbf{x} / \tau) =$$
 
 $$= \lim\limits_{\tau \to \infty}
 \frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}} =$$
@@ -199,39 +200,47 @@ $$\lim\limits_{\tau \to \infty}
 
 We can also show that:
 
-$$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
-\underset{i}{\arg\max} \ \mathbf{x}$$
+$$\lim\limits_{\tau \to 0} \textit{softmax}(\mathbf{x}; \tau) =
+\underset{i}{\textit{argmax}} \ \mathbf{x}$$
 
-Using the same definition as before:
+Following the same steps as before:
 
-$$\lim\limits_{\tau \to 0} \text{softmax}(\mathbf{x}; \tau) =
+$$\lim\limits_{\tau \to 0} \textit{softmax}(\mathbf{x}; \tau) =
 \lim\limits_{\tau \to 0}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
 
 Note that:
 
-$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = \infty \text{ if }
-x_i \neq x_j$$
+$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = -\infty \text{ if }
+x_i > x_j \implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} = 0$$
 
-and
+$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = +\infty \text{ if }
+x_i < x_j \implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} =
++\infty$$
 
-$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0 \text{ if } x_i = x_j$$
+$$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0 \text{ if } x_i = x_j
+\implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} = 1$$
 
-So,
+Thus,
 
 $$\lim\limits_{\tau \to 0}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
 \begin{cases}
-    0 & \text{if } x_i \neq x_j \\
-    1 & \text{if } x_i = x_j
-\end{cases} = \underset{i}{\arg\max} \ \mathbf{x} 
+    0 & \text{if } \exists j : x_j > x_i \\
+    1 & \text{if } x_i \geq x_j \ \forall j
+\end{cases} =
+\begin{cases}
+    0 & \text{if } x_i < \max_j x_j \\
+    1 & \text{if } x_i = \max_j x_j
+\end{cases} =
+\underset{i}{\textit{argmax}} \ \mathbf{x} 
 \quad \blacksquare$$
 
 ## Deriving Cross-entropy loss via Maximum Likelihood Estimation
 
 A linear model for classification is:
 
-$$\hat{y} = \text{softmax}(\mathbf{Wx} + \mathbf{b})$$
+$$\hat{y} = \textit{softmax}(\mathbf{Wx} + \mathbf{b})$$
 
 Where $\mathbf{W} \sim (m, c)$, $\mathbf{x} \sim (c)$, and
 $\mathbf{b} \sim (m)$. Because outputs are restricted to the probability
@@ -242,6 +251,6 @@ $$p (\mathbf{y^{\text{oh}}} \mid \hat{y}) =
 
 We compute the maximum likelihood solution:
 
-$$\underset{\hat{y}}{\arg\max} \ p(\mathbf{y^{\text{oh}}} \mid \hat{y}) =$$
+$$\underset{\hat{y}}{\textit{argmax}} \ p(\mathbf{y^{\text{oh}}} \mid \hat{y})$$
 
-$$= \underset{\hat{y}}{\arg\max} \ \prod \hat{y}_i^{y^\text{oh}_i}$$
+$$= \underset{\hat{y}}{\textit{argmax}} \ \prod \hat{y}_i^{y^\text{oh}_i}$$
