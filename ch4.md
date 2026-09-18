@@ -269,8 +269,9 @@ $$\underset{\hat{y}}{\text{argmax }} \prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i} =
 \underset{\hat{y}}{\text{argmax }}
 \log (\prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i}) =$$
 
-$$= \underset{\hat{y}}{\text{argmax }} \sum_{i=0}^m y^\text{oh}_i
-\log(\hat{y}_i) =$$
+$$= \underset{\hat{y}}{\text{argmax }} \sum_{i=0}^m
+\log (\hat{y}_i^{y^\text{oh}_i}) = \underset{\hat{y}}{\text{argmax }}
+\sum_{i=0}^m y^\text{oh}_i \log(\hat{y}_i) =$$
 
 $$= \underset{\hat{y}}{\text{argmin }} -\sum_{i=0}^m y^\text{oh}_i
 \log(\hat{y}_i)$$
