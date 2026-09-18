@@ -168,7 +168,7 @@ Therefore,
 $$\left[\textit{softmax}(\mathbf{x}; \tau)\right]_i =
 \frac{e^{x_i / \tau}}{\sum_{j=1}^{m} e^{x_j / \tau}}$$
 
-We can show that:
+We can show that
 
 $$\lim\limits_{\tau \to \infty} \textit{softmax}(\mathbf{x}; \tau) =
 \frac{1}{m}$$
@@ -191,17 +191,17 @@ Given that
 
 $$\lim\limits_{\tau \to \infty} \frac{x_j - x_i}{\tau} = 0$$
 
-Then:
+Then,
 
 $$\lim\limits_{\tau \to \infty}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}} =
 \frac{1}{\sum_{j=1}^{m} 1} = \frac{1}{m}
 \quad \blacksquare$$
 
-We can also show that:
+We can also show that
 
 $$\lim\limits_{\tau \to 0} \textit{softmax}(\mathbf{x}; \tau) =
-\underset{i}{\textit{argmax}} \ \mathbf{x}$$
+\underset{i}{\text{argmax }} \mathbf{x}$$
 
 Following the same steps as before:
 
@@ -209,7 +209,7 @@ $$\lim\limits_{\tau \to 0} \textit{softmax}(\mathbf{x}; \tau) =
 \lim\limits_{\tau \to 0}
 \frac{1}{\sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}}}$$
 
-Note that:
+Note that
 
 $$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = -\infty \text{ if }
 x_i > x_j \implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} = 0$$
@@ -220,6 +220,15 @@ x_i < x_j \implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} =
 
 $$\lim\limits_{\tau \to 0} \frac{x_j - x_i}{\tau} = 0 \text{ if } x_i = x_j
 \implies \lim\limits_{\tau \to 0} e^{\frac{x_j - x_i}{\tau}} = 1$$
+
+So,
+
+$$\lim\limits_{\tau \to 0} \sum_{j=1}^{m} e^{\frac{x_j - x_i}{\tau}} = 
+\begin{cases}
+    +\infty & \text{if } \exists j : x_j > x_i \\
+    1 & \text{if } x_i \geq x_j \ \forall j
+\end{cases}
+$$
 
 Thus,
 
@@ -233,7 +242,7 @@ $$\lim\limits_{\tau \to 0}
     0 & \text{if } x_i < \max_j x_j \\
     1 & \text{if } x_i = \max_j x_j
 \end{cases} =
-\underset{i}{\textit{argmax}} \ \mathbf{x} 
+\underset{i}{\text{argmax }} \mathbf{x} 
 \quad \blacksquare$$
 
 ## Deriving Cross-entropy loss via Maximum Likelihood Estimation
@@ -251,6 +260,22 @@ $$p (\mathbf{y^{\text{oh}}} \mid \hat{y}) =
 
 We compute the maximum likelihood solution:
 
-$$\underset{\hat{y}}{\textit{argmax}} \ p(\mathbf{y^{\text{oh}}} \mid \hat{y})$$
+$$\underset{\hat{y}}{\text{argmax }} p(\mathbf{y^{\text{oh}}} \mid \hat{y}) =
+\underset{\hat{y}}{\text{argmax }} \prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i}$$
 
-$$= \underset{\hat{y}}{\textit{argmax}} \ \prod \hat{y}_i^{y^\text{oh}_i}$$
+Since the $\log$ is strictly increasing,
+
+$$\underset{\hat{y}}{\text{argmax }} \prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i} =
+\underset{\hat{y}}{\text{argmax }}
+\log (\prod_{i=0}^m \hat{y}_i^{y^\text{oh}_i}) =$$
+
+$$= \underset{\hat{y}}{\text{argmax }} \sum_{i=0}^m y^\text{oh}_i
+\log(\hat{y}_i) =$$
+
+$$= \underset{\hat{y}}{\text{argmin }} -\sum_{i=0}^m y^\text{oh}_i
+\log(\hat{y}_i)$$
+
+So MLE is equivalent to minimizing the **cross-entropy loss**:
+
+$$CE(\mathbf{y}, \hat{\mathbf{y}}) =
+-\sum_{i=0}^m y^\text{oh}_i \log(\hat{y}_i)$$
