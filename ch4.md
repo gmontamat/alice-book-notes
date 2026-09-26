@@ -280,3 +280,20 @@ So MLE is equivalent to minimizing the **cross-entropy loss**:
 
 $$CE(\mathbf{y}, \hat{\mathbf{y}}) =
 -\sum_{i=1}^m y^\text{oh}_i \log(\hat{y}_i)$$
+
+## Deriving Sigmoid from Softmax
+
+By definition,
+
+$$\textit{softmax}(\mathbf{z}) = \frac{e^{z_i}}{\sum_{j=1}^m e^{z_j}}$$
+
+For binary classification, with $m = 2$,
+
+$$\left[\textit{softmax}(\mathbf{z})\right]_1 =
+\frac{e^{z_1}}{\sum_{j=1}^2 e^{z_j}} =$$
+
+$$= \frac{e^{z_1}}{e^{z_1} + e^{z_2}} = \frac{1}{1 + e^{z_2 - z_1}}$$
+
+If we define $x = z_1 - z_2$, then
+
+$$\frac{1}{1 + e^{z_2 - z_1}} = \frac{1}{1 + e^{-x}} = \sigma(x)$$
