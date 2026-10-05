@@ -297,3 +297,80 @@ $$= \frac{e^{z_1}}{e^{z_1} + e^{z_2}} = \frac{1}{1 + e^{z_2 - z_1}}$$
 If we define $x = z_1 - z_2$, then
 
 $$\frac{1}{1 + e^{z_2 - z_1}} = \frac{1}{1 + e^{-x}} = \sigma(x)$$
+
+## Obtaining the gradient of the Binary Logistic Regression model
+
+*Note: maybe there's a shortcut because the resulting formula is simple but
+here we show detailed steps*
+
+The binary logistic regression model is given by:
+
+$$f(\mathbf{x}) = \sigma(\mathbf{w}^{\top}\mathbf{x} + b) = \hat{y}$$
+
+Where $\sigma(s)$ is the sigmoid function:
+
+$$\sigma(s) = \frac{1}{1 + e^{-s}}$$
+
+and its derivative is:
+
+$$\frac{\partial \sigma(s)}{\partial s} =
+\sigma(s) (1 - \sigma(s))$$
+
+The loss function is cross entropy loss for both classes:
+
+$$CE(\hat{y}, y) = -y \log(\hat{y}) - (1 - y) \log(1-\hat{y})$$
+
+We can compute $\nabla_{\mathbf{w}}CE$ using the chain rule:
+
+$$\frac{\partial CE}{\partial \mathbf{w}} =
+\frac{\partial CE}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial \mathbf{w}}$$
+
+The first term $\partial CE / \partial \hat{y}$ is:
+
+$$\frac{\partial CE}{\partial \hat{y}} = -y \frac{1}{\hat{y}} + (1 - y)
+\frac{1}{1 - \hat{y}} =$$
+
+$$= -y \frac{1}{\sigma(\mathbf{w}^{\top} \mathbf{x} + b)} + (1 - y)
+\frac{1}{1 -  \sigma(\mathbf{w}^{\top} \mathbf{x} + b)}$$
+
+To obtain the second term, we need the chain rule again:
+
+$$\frac{\partial \hat{y}}{\partial \mathbf{w}} =
+\frac{\partial f(\mathbf{x})}{\partial \mathbf{w}} =
+\frac{\partial \sigma(\mathbf{w}^{\top} \mathbf{x} + b)}{\partial \mathbf{w}}$$
+
+If we define $s = \mathbf{w}^{\top} \mathbf{x} + b$, then we can use the chain
+rule:
+
+$$\frac{\partial \sigma(\mathbf{w}^{\top} \mathbf{x} + b)}{\partial \mathbf{w}}
+= \frac{\partial \sigma(s)}{\partial s}
+\frac{\partial s}{\partial \mathbf{w}} =
+\sigma(s) (1 - \sigma(s)) \mathbf{x}$$
+
+Thus,
+
+$$\frac{\partial \hat{y}}{\partial \mathbf{w}} =
+\sigma(\mathbf{w}^{\top} \mathbf{x} + b)
+(1 - \sigma(\mathbf{w}^{\top} \mathbf{x} + b)) \mathbf{x}$$
+
+We can now obtain $\partial CE / \partial \mathbf{w}$:
+
+$$\frac{\partial CE}{\partial \mathbf{w}} =
+\frac{\partial CE}{\partial \hat{y}}
+\frac{\partial \hat{y}}{\partial \mathbf{w}} =$$
+
+$$= (-y \frac{1}{\sigma(\mathbf{w}^{\top} \mathbf{x} + b)} + (1 - y)
+\frac{1}{1 -  \sigma(\mathbf{w}^{\top} \mathbf{x} + b)})
+\sigma(\mathbf{w}^{\top} \mathbf{x} + b)
+(1 - \sigma(\mathbf{w}^{\top} \mathbf{x} + b)) \mathbf{x} =$$
+
+$$= -y (1 - \sigma(\mathbf{w}^{\top} \mathbf{x} + b)) \mathbf{x} +
+(1 - y) \sigma(\mathbf{w}^{\top} \mathbf{x} + b) \mathbf{x} =$$
+
+$$= -y (1 - f(\mathbf{x})) \mathbf{x} + (1 - y) f(\mathbf{x}) \mathbf{x} =$$
+
+$$= -y \mathbf{x} + y f(\mathbf{x}) \mathbf{x} + f(\mathbf{x}) \mathbf{x} -
+y f(\mathbf{x}) \mathbf{x} =$$
+
+$$= (f(\mathbf{x}) - y) \mathbf{x}$$
