@@ -399,7 +399,11 @@ By definition,
 
 $$\text{logsumexp}(\mathbf{p}) = \log(\sum_j e^{p_j})$$
 
-For any $c \in \mathbb{R}$ such that $c \ge 0$:
+We show that, for any $c \in \mathbb{R}$ such that $c \ge 0$:
+
+$$\text{logsumexp}(\mathbf{p} - c) + c = \text{logsumexp}(\mathbf{p})$$
+
+Given $c \ge 0$:
 
 $$\text{logsumexp}(\mathbf{p} - c) + c = \log(\sum_j e^{p_j - c}) + c =$$
 
