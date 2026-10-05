@@ -326,7 +326,7 @@ $$\frac{\partial CE}{\partial \mathbf{w}} =
 \frac{\partial CE}{\partial \hat{y}}
 \frac{\partial \hat{y}}{\partial \mathbf{w}}$$
 
-The first term $\partial CE / \partial \hat{y}$ is:
+The first term becomes:
 
 $$\frac{\partial CE}{\partial \hat{y}} = -y \frac{1}{\hat{y}} + (1 - y)
 \frac{1}{1 - \hat{y}} =$$
@@ -340,8 +340,7 @@ $$\frac{\partial \hat{y}}{\partial \mathbf{w}} =
 \frac{\partial f(\mathbf{x})}{\partial \mathbf{w}} =
 \frac{\partial \sigma(\mathbf{w}^{\top} \mathbf{x} + b)}{\partial \mathbf{w}}$$
 
-If we define $s = \mathbf{w}^{\top} \mathbf{x} + b$, then we can use the chain
-rule:
+If we define $s = \mathbf{w}^{\top} \mathbf{x} + b$, then:
 
 $$\frac{\partial \sigma(\mathbf{w}^{\top} \mathbf{x} + b)}{\partial \mathbf{w}}
 = \frac{\partial \sigma(s)}{\partial s}
@@ -374,3 +373,45 @@ $$= -y \mathbf{x} + y f(\mathbf{x}) \mathbf{x} + f(\mathbf{x}) \mathbf{x} -
 y f(\mathbf{x}) \mathbf{x} =$$
 
 $$= (f(\mathbf{x}) - y) \mathbf{x}$$
+
+## Sigmoid inverse and Generalized Linear Models
+
+By definition,
+
+$$\sigma(z) = \frac{1}{1 + e^{-z}} = y$$
+
+So,
+
+$$\frac{1}{y} = 1 + e^{-z}$$
+
+$$\frac{1 - y}{y} = e^{-z}$$
+
+$$\frac{y}{1-y} = e^z$$
+
+$$\log(\frac{y}{1 - y}) = z = \sigma^{-1}(y)$$
+
+If $z = \mathbf{w}^{\top} \mathbf{x} + b$, the Binary Logistic Regression model
+is linear on a non-linear transformation of the output.
+
+## Invariance of the logsumexp
+
+By definition,
+
+$$\text{logsumexp}(\mathbf{p}) = \log(\sum_j e^{p_j})$$
+
+For any $c \in \mathbb{R}$ such that $c \ge 0$:
+
+$$\text{logsumexp}(\mathbf{p} - c) + c = \log(\sum_j e^{p_j - c}) + c =$$
+
+$$= \log(\sum_j \frac{e^{p_j}}{e^c}) + c =$$
+
+$$= \log(e^{-c} \sum_j e^{p_j}) + c =$$
+
+$$= \log(e^{-c}) + \log(\sum_j e^{p_j}) + c =$$
+
+$$= -c + \log(\sum_j e^{p_j}) + c =$$
+
+$$= \log(\sum_j e^{p_j}) = \text{logsumexp}(\mathbf{p}) \quad \blacksquare$$
+
+By taking $c = \text{max}(\mathbf{p})$, we can prevent numerical problems by
+bounding the maximum logit value at $0$ so that $e^{p_j - c} \le 1$.
