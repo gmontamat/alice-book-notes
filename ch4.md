@@ -419,3 +419,32 @@ $$= \log(\sum_j e^{p_j}) = \text{logsumexp}(\mathbf{p}) \quad \blacksquare$$
 
 By taking $c = \text{max}(\mathbf{p})$, we can prevent numerical problems by
 bounding the maximum logit value at $0$ so that $e^{p_j - c} \le 1$.
+
+## Gradient of the logsumexp
+
+Section **4.3.2** casually notes that:
+
+$$\nabla\text{softmax}(\bullet) = \text{logsumexp}(\bullet)$$
+
+Although this claim has been supposedly corrected and listed in
+the [errata](https://www.sscardapane.it/assets/alice/errata_list.pdf), it looks
+like the statement is wrong, and the opposite seems to be true:
+
+$$\nabla\text{logsumexp}(\bullet) = \text{softmax}(\bullet)$$
+
+Given:
+
+$$\text{logsumexp}(\mathbf{x}) = \log(\sum_j e^{x_j})$$
+
+Then, using the chain rule:
+
+$$\frac{\partial \text{logsumexp}(\mathbf{x})}{\partial x_i} =
+\frac{\partial \log(s)}{\partial s} \frac{\partial s}{\partial x_i}$$
+
+Where $s = \sum_j e^{x_j}$. Then:
+
+$$\frac{\partial \text{logsumexp}(\mathbf{x})}{\partial x_i} =
+\frac{1}{s} e^{x_i} =$$
+
+$$= \frac{e^{x_i}}{\sum_j e^{x_j}} =
+\left[\textit{softmax}(\mathbf{x})\right]_i \quad \blacksquare$$
