@@ -20,10 +20,10 @@ $$\textit{f}_2(\textit{f}_1(\mathbf{x})) =
 \mathbf{w}_2^{\top} \mathbf{W}_1 \mathbf{x} + \mathbf{w}_2^{\top} \mathbf{b}_1 +
 b_2$$
 
-If we define $\mathbf{A} = \mathbf{w}_2^{\top} \mathbf{W}_1 \sim (c_1)$ and
-$c = \mathbf{w}_2^{\top} \mathbf{b}_1 + b_2 \in \mathbb{R}$, then:
+If we define $\mathbf{A} = \mathbf{w}_2^{\top} \mathbf{W}_1 \sim (c_1)^{\top}$
+and $c = \mathbf{w}_2^{\top} \mathbf{b}_1 + b_2 \in \mathbb{R}$, then:
 
 $$\textit{f}_2(\textit{f}_1(\mathbf{x})) = \mathbf{A} \mathbf{x} + c$$
 
-Hence, composing linear models will throw the same results as just using a plain
-linear model.
+Therefore, composing linear models yields the same results as using a single
+plain linear model.
