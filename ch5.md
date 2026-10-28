@@ -34,7 +34,7 @@ Given a continuous function $g : \mathbb{R}^d \rightarrow \mathbb{R}$, there
 exists an MLP with a single layer model $f(\mathbf{x})$ with an element-wise
 sigmoid activation function ($\phi$) of the form:
 
-$$\mathbf{h} = f_1(\mathbf{}x) = \phi(\mathbf{W}_1 \mathbf{x} + \mathbf{b}_1)$$
+$$\mathbf{h} = f_1(\mathbf{x}) = \phi(\mathbf{W}_1 \mathbf{x} + \mathbf{b}_1)$$
 
 $$y = f_2(\mathbf{h}) = \mathbf{w}_2^{\top} \mathbf{h} + b_2$$
 
