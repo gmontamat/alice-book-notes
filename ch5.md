@@ -31,8 +31,8 @@ plain linear model.
 ## Universal approximation of MLPs
 
 Given a continuous function $g : \mathbb{R}^d \rightarrow \mathbb{R}$, there
-exists an MLP with a single layer model $f(\mathbf{x})$ with an element-wise
-sigmoid activation function ($\phi$) of the form:
+exists an MLP with a single layer model $f(\mathbf{x}) = f_2(f_1(\mathbf{x}))$
+with an element-wise sigmoid activation function, $\phi(\cdot)$, of the form:
 
 $$\mathbf{h} = f_1(\mathbf{x}) = \phi(\mathbf{W}_1 \mathbf{x} + \mathbf{b}_1)$$
 
@@ -44,6 +44,6 @@ $$\lvert f(\mathbf{x}) - g(\mathbf{x})) \rvert \le \epsilon \;
 \forall \mathbf{x}$$
 
 This is a purely theoritecal construct, where the width of the hidden layer of
-the model ($\text{dim}(\mathbf{h})$) can grow without bounds. Universal
+the model, $\text{dim}(\mathbf{h})$, can grow without bounds. Universal
 approximation can also be proved for models having finite width but possibly
 infinite depth (as in number of fully-connected layers).
