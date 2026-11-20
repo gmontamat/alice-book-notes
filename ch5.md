@@ -46,4 +46,13 @@ $$\lvert f(\mathbf{x}) - g(\mathbf{x})) \rvert \le \epsilon \;
 This is a purely theoritecal construct, where the width of the hidden layer of
 the model, $\text{dim}(\mathbf{h})$, can grow without bounds. Universal
 approximation can also be proved for models having finite width but possibly
-infinite depth (as in number of fully-connected layers).
+infinite depth (as in number of fully-connected layers). Appendix B shows an
+outline of the proof for the 1D case (for any continuous function
+$g : \mathbb{R} \rightarrow \mathbb{R}$) which follows these steps:
+
+1. Approximate a step function with a single neuron in the hidden layer
+2. Add a second neuron with opposite amplitude and slightly shifted position
+   to approximate a "bin" function.
+3. Split the function $g(x)$ into $m$ bins, averaging the value of $g(x)$ inside
+   each interval. Then $2m$ neurons can replicate this approximation since each
+   bin in step 2 is effectively 0 outside their interval.
