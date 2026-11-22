@@ -56,3 +56,23 @@ $g : \mathbb{R} \rightarrow \mathbb{R}$) which follows these steps:
 3. Split the function $g(x)$ into $m$ bins, averaging the value of $g(x)$ inside
    each interval. Then $2m$ neurons can replicate this approximation since each
    bin in step 2 is effectively 0 outside their interval.
+
+## Equivalence between the sigmoid and tanh activation functions
+
+Section 5.4 claims that $\tanh(s) = 2 \sigma(s) - 1$, but there's a typo in this
+equation. We show that $\tanh(s) = 2 \sigma_2(s) - 1 = 2 \sigma(2s) - 1$. Given
+that:
+
+$$\sigma(s) = \frac{1}{1 + e^{-s}}$$
+
+Then,
+
+$$2 \sigma(2s) - 1 = \frac{2}{1 + e^{-2s}} - \frac{1 + e^{-2s}}{1 + e^{-2s}} =$$
+
+$$= \frac{1 - e^{-2s}}{1 + e^{-2s}} =
+\frac{1 - e^{-2s}}{1 + e^{-2s}} \frac{e^s}{e^s} =$$
+
+$$\frac{e^s - e^{-s}}{e^s + e^{-s}} = \tanh(s) \quad \blacksquare$$
+
+The activation functions are still equivalent because the domain is still
+$(-\infty; +\infty)$ for both.
